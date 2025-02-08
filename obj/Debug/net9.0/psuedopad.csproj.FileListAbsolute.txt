@@ -1,0 +1,15 @@
+/Users/jonanleu/repos/psuedopad/bin/Debug/net9.0/psuedopad
+/Users/jonanleu/repos/psuedopad/bin/Debug/net9.0/psuedopad.deps.json
+/Users/jonanleu/repos/psuedopad/bin/Debug/net9.0/psuedopad.runtimeconfig.json
+/Users/jonanleu/repos/psuedopad/bin/Debug/net9.0/psuedopad.dll
+/Users/jonanleu/repos/psuedopad/bin/Debug/net9.0/psuedopad.pdb
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.AssemblyInfoInputs.cache
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.AssemblyInfo.cs
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.csproj.CoreCompileInputs.cache
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.sourcelink.json
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.dll
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/refint/psuedopad.dll
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.pdb
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/psuedopad.genruntimeconfig.cache
+/Users/jonanleu/repos/psuedopad/obj/Debug/net9.0/ref/psuedopad.dll
