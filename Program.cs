@@ -1,32 +1,26 @@
-﻿// The Prototype
+﻿// The Magic Cannon
 
-int pilotNumber;
-int hunterNumber;
-bool validHunterNumber = false;
-
-do
+int length = 100;
+for (int i = 1; i <= length; i++)
 {
-  Console.Write("Pilot enter a number between 0-100: ");
-  pilotNumber = Convert.ToInt32(Console.ReadLine());
-  if (pilotNumber < 0 || pilotNumber > 100)
+  if (i % 3 == 0 && i % 5 == 0)
   {
-    Console.WriteLine("\nInvalid number choose a number between 0-100\n");
-  }else {
-    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine($"Combo Blast ({i})");
   }
-
-} while (pilotNumber < 0 || pilotNumber > 100);
-
-do
-{
-  Console.Write("Hunter guess the pilots number, choose between 0-100: ");
-  hunterNumber = Convert.ToInt32(Console.ReadLine());
-  if (hunterNumber > pilotNumber){
-    Console.WriteLine("You guess is too high");
-  } else if(hunterNumber < pilotNumber){
-    Console.WriteLine("Your guess was too low.");
-  }else{
-    Console.WriteLine("You guessed the number!");
-    validHunterNumber = true;
+  else if (i % 3 == 0)
+  {
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine($"Fire ({i})");
   }
-}while (!validHunterNumber);
+  else if (i % 5 == 0)
+  {
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine($"Electric ({i})");
+  }
+  else
+  {
+    Console.ResetColor();
+    Console.WriteLine($"Normal ({i})");
+  }
+}
