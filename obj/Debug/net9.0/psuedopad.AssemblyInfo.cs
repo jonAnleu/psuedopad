@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("psuedopad")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2612ebda12bd45668723528cbfc8a2aee58dd5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6ec2344bcbea4e96c78e0259d221078236a32a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("psuedopad")]
 [assembly: System.Reflection.AssemblyTitleAttribute("psuedopad")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

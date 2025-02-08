@@ -1,11 +1,11 @@
-﻿//Challenge Consolas and Telim 
-/*Expected Output
-Bread is ready.
-Who is the bread for?
-RB
-Noted: RB got bread.*/ 
+﻿//Defense of Consolas
 
-Console.WriteLine("Bread is ready.");
-Console.WriteLine("Who is the bread for: ");
-string name = Console.ReadLine();
-Console.WriteLine($"Noted: {name} got bread.");
+Console.Write("What is the target row: ");
+int row = int.Parse(Console.ReadLine());
+Console.WriteLine("What is the column: ");
+int column = int.Parse(Console.ReadLine());
+string leftPosition = $"({row}, {column - 1})";
+string rightPosition = $"({row}, {column + 1})";
+string topPosition = $"({row + 1}, {column})";
+string bottomPosition = $"({row - 1}, {column})";
+Console.WriteLine($"Deploy to: \n{topPosition} \n{rightPosition} \n{bottomPosition} \n{leftPosition} ");
