@@ -1,16 +1,32 @@
-﻿// Buying Inventory
+﻿// The Prototype
 
-Console.Write("What number do you want to see the price of? ");
-string? response = Console.ReadLine();
-response = response switch 
+int pilotNumber;
+int hunterNumber;
+bool validHunterNumber = false;
+
+do
 {
-  "1" => "Rope: 10",
-  "2" => "Torches: 15",
-  "3" => "Climbing Equipment: 25",
-  "4" => "Clean Water: 1",
-  "5" => "Machete: 20",
-  "6" => "Canoe: 200",
-  "7" => "Food Supplies: 1",
-  _ => "Enter a number 1-7"
-};
-Console.WriteLine(response);
+  Console.Write("Pilot enter a number between 0-100: ");
+  pilotNumber = Convert.ToInt32(Console.ReadLine());
+  if (pilotNumber < 0 || pilotNumber > 100)
+  {
+    Console.WriteLine("\nInvalid number choose a number between 0-100\n");
+  }else {
+    Console.Clear();
+  }
+
+} while (pilotNumber < 0 || pilotNumber > 100);
+
+do
+{
+  Console.Write("Hunter guess the pilots number, choose between 0-100: ");
+  hunterNumber = Convert.ToInt32(Console.ReadLine());
+  if (hunterNumber > pilotNumber){
+    Console.WriteLine("You guess is too high");
+  } else if(hunterNumber < pilotNumber){
+    Console.WriteLine("Your guess was too low.");
+  }else{
+    Console.WriteLine("You guessed the number!");
+    validHunterNumber = true;
+  }
+}while (!validHunterNumber);
