@@ -1,9 +1,9 @@
 ﻿//Defense of Consolas
 
 Console.Write("What is the target row: ");
-int row = int.Parse(Console.ReadLine());
+int row = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("What is the column: ");
-int column = int.Parse(Console.ReadLine());
+int column = Convert.ToInt32(Console.ReadLine());
 string leftPosition = $"({row}, {column - 1})";
 string rightPosition = $"({row}, {column + 1})";
 string topPosition = $"({row + 1}, {column})";
