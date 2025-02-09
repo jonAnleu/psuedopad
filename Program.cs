@@ -1,10 +1,10 @@
-﻿// The Replicator of D'To
+﻿// Recursion Countdown
+CountDown(15);
 
-int[] array = {5,3,7,4,6};
-int[] secondArray = new int[5];
 
-for(int i = 0; i < array.Length; i++)
+void CountDown(int num)
 {
-  secondArray[i] = array[i];
-  Console.WriteLine(secondArray[i]);
+  if (num == 0) return;
+  Console.WriteLine(num);
+  CountDown(num - 1);
 }
