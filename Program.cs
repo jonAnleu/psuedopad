@@ -1,54 +1,85 @@
-﻿// Simula's Soup
+﻿//Vin Fletcher's Arrows (Classes)
+using System.ComponentModel.DataAnnotations;
 
-(Seasoning seasoning, MainIngredients ingredients, SoupType type) soup = GetSoup();
-Console.WriteLine($"{soup.seasoning} {soup.ingredients} {soup.type}");
+Arrow arrow = GetArrow();
+Console.WriteLine($"The arrow you ordered will cost {arrow.GetCost()} gold");
 
-(Seasoning, MainIngredients, SoupType) GetSoup()
+
+Arrow GetArrow()
 {
-  Seasoning seasoning = GetSeasoning();
-  MainIngredients ingredients = GetIngredients();
-  SoupType type = GetSoupType();
-  return (seasoning, ingredients, type);
+  Arrowhead arrowhead = GetArrowheadType();
+  Fletching fletching = GetFletchingType();
+  double length = GetLength();
+  return new Arrow(arrowhead, fletching, length);
 }
 
-Seasoning GetSeasoning()
+Arrowhead GetArrowheadType()
 {
-  Console.Write("Choose a seasoning (salty, spicy, sweet)");
-  string input = Console.ReadLine();
-
+  Console.Write("Choose and arrowhead (Steel, Wood, Obsidian): ");
+  string input = Console.ReadLine().ToLower();
   return input switch
   {
-    "salty" => Seasoning.Salty,
-    "spicy" => Seasoning.Spicy,
-    "sweet" => Seasoning.Sweet
+    "steel" => Arrowhead.Steel,
+    "wood" => Arrowhead.Wood,
+    "obsidian" => Arrowhead.Obsidian
   };
 }
 
-MainIngredients GetIngredients()
+Fletching GetFletchingType()
 {
-  Console.Write("Choose your ingredient (mushroom, chicken, carrot, potato)");
-  string input = Console.ReadLine();
-  return input switch
+  Console.Write("Choose a fletching type(Plastic, Turkey Feathers, Goose Feathers): ");
+  string input = Console.ReadLine().ToLower();
+  return input switch 
   {
-    "mushroom" => MainIngredients.Mushroom,
-    "chicken" => MainIngredients.Chicken,
-    "carrot" => MainIngredients.Carrot,
-    "potato" => MainIngredients.Potato
+    "plastic" => Fletching.Plastic,
+    "turkey feathers" => Fletching.TurkeyFeathers,
+    "goose feathers" => Fletching.GooseFeathers
   };
 }
 
-SoupType GetSoupType()
+double GetLength()
 {
-  Console.Write("Choose your soup type (soup, stew, gumbo)");
-  string input = Console.ReadLine();
-  return input switch
+  double length = 0;
+  while (length < 60 || length > 100)
   {
-    "soup" => SoupType.Soup,
-    "stew" => SoupType.Stew,
-    "gumbo" => SoupType.Gumbo
-  };
+  Console.Write("Choose a length between (60 - 100): ");
+  length = Convert.ToDouble(Console.ReadLine());
+  } 
+    return length;
 }
+class Arrow
+{
+  public Arrowhead _arrowhead;
+  public Fletching _fletching;
+  public double _length;
 
-enum SoupType{ Soup, Stew , Gumbo}
-enum MainIngredients{Mushroom, Chicken, Carrot, Potato}
-enum Seasoning{Salty, Spicy, Sweet}
+  public Arrow(Arrowhead arrowhead, Fletching fletching, double length)
+  {
+    _arrowhead = arrowhead;
+    _fletching = fletching;
+    _length = length;
+  }
+
+  public double GetCost()
+  {
+    double arrowheadCost = _arrowhead switch
+    {
+      Arrowhead.Steel => 10,
+      Arrowhead.Wood => 3,
+      Arrowhead.Obsidian => 5
+    };
+    double fletchingCost = _fletching switch
+    {
+      Fletching.Plastic => 10,
+      Fletching.TurkeyFeathers => 5,
+      Fletching.GooseFeathers => 3
+    };
+    double lengthCost = _length * .05;
+    return arrowheadCost + fletchingCost + lengthCost;
+  }
+
+
+
+}
+  public enum Arrowhead {Steel, Wood, Obsidian}
+  public enum Fletching {Plastic, TurkeyFeathers, GooseFeathers}
