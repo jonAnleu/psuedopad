@@ -1,85 +1,113 @@
-﻿//Vin Fletcher's Arrows (Classes)
+﻿//Arrow Factories (static methods)
 using System.ComponentModel.DataAnnotations;
 
-Arrow arrow = GetArrow();
-Console.WriteLine($"The arrow you ordered will cost {arrow.GetCost()} gold");
+Console.WriteLine("What arrow do you want?");
+Console.WriteLine("1 - Elite Arrow");
+Console.WriteLine("2 - Beginner Arrow");
+Console.WriteLine("3 - Marksman Arrow");
+Console.WriteLine("4 - Custom Arrow");
 
+string choice = Console.ReadLine();
 
-Arrow GetArrow()
+Arrow arrow = choice switch
 {
-  Arrowhead arrowhead = GetArrowheadType();
-  Fletching fletching = GetFletchingType();
-  double length = GetLength();
-  return new Arrow(arrowhead, fletching, length);
+    "1" => Arrow.CreateEliteArrow(),
+    "2" => Arrow.CreateBeginnerArrow(),
+    "3" => Arrow.CreateMarksmanArrow(),
+    _ => CreateCustomArrow(),
+};
+
+Console.WriteLine($"That arrow costs {arrow.Cost} gold.");
+
+
+
+Arrow CreateCustomArrow()
+{
+    Arrowhead arrowhead = GetArrowheadType();
+    Fletching fletching = GetFletchingType();
+    float length = GetLength();
+
+    return new Arrow(arrowhead, fletching, length);
 }
 
 Arrowhead GetArrowheadType()
 {
-  Console.Write("Choose and arrowhead (Steel, Wood, Obsidian): ");
-  string input = Console.ReadLine().ToLower();
-  return input switch
-  {
-    "steel" => Arrowhead.Steel,
-    "wood" => Arrowhead.Wood,
-    "obsidian" => Arrowhead.Obsidian
-  };
+    Console.Write("Arrowhead type (steel, wood, obsidian): ");
+    string input = Console.ReadLine();
+    return input switch
+    {
+        "steel" => Arrowhead.Steel,
+        "wood" => Arrowhead.Wood,
+        "obsidian" => Arrowhead.Obsidian
+    };
 }
 
 Fletching GetFletchingType()
 {
-  Console.Write("Choose a fletching type(Plastic, Turkey Feathers, Goose Feathers): ");
-  string input = Console.ReadLine().ToLower();
-  return input switch 
-  {
-    "plastic" => Fletching.Plastic,
-    "turkey feathers" => Fletching.TurkeyFeathers,
-    "goose feathers" => Fletching.GooseFeathers
-  };
+    Console.Write("Fletching type (plastic, turkey feather, goose feather): ");
+    string input = Console.ReadLine();
+    return input switch
+    {
+        "plastic" => Fletching.Plastic,
+        "turkey feather" => Fletching.TurkeyFeathers,
+        "goose feather" => Fletching.GooseFeathers
+    };
 }
 
-double GetLength()
+float GetLength()
 {
-  double length = 0;
-  while (length < 60 || length > 100)
-  {
-  Console.Write("Choose a length between (60 - 100): ");
-  length = Convert.ToDouble(Console.ReadLine());
-  } 
+    float length = 0;
+
+    while (length < 60 || length > 100)
+    {
+        Console.Write("Arrow length (between 60 and 100): ");
+        length = Convert.ToSingle(Console.ReadLine());
+    }
+
     return length;
 }
-class Arrow
+
+public class Arrow
 {
-  public Arrowhead _arrowhead;
-  public Fletching _fletching;
-  public double _length;
+    public Arrowhead Arrowhead { get; }
+    public Fletching Fletching { get; }
+    public float Length { get; }
 
-  public Arrow(Arrowhead arrowhead, Fletching fletching, double length)
-  {
-    _arrowhead = arrowhead;
-    _fletching = fletching;
-    _length = length;
-  }
-
-  public double GetCost()
-  {
-    double arrowheadCost = _arrowhead switch
+    public Arrow(Arrowhead arrowhead, Fletching fletching, float length)
     {
-      Arrowhead.Steel => 10,
-      Arrowhead.Wood => 3,
-      Arrowhead.Obsidian => 5
-    };
-    double fletchingCost = _fletching switch
+        Arrowhead = arrowhead;
+        Fletching = fletching;
+        Length = length;
+    }
+
+    public float Cost
     {
-      Fletching.Plastic => 10,
-      Fletching.TurkeyFeathers => 5,
-      Fletching.GooseFeathers => 3
-    };
-    double lengthCost = _length * .05;
-    return arrowheadCost + fletchingCost + lengthCost;
-  }
+        get
+        {
+            float arrowheadCost = Arrowhead switch
+            {
+                Arrowhead.Steel => 10,
+                Arrowhead.Wood => 3,
+                Arrowhead.Obsidian => 5
+            };
 
+            float fletchingCost = Fletching switch
+            {
+                Fletching.Plastic => 10,
+                Fletching.TurkeyFeathers => 5,
+                Fletching.GooseFeathers => 3
+            };
 
+            float shaftCost = 0.05f * Length;
 
+            return arrowheadCost + fletchingCost + shaftCost;
+        }
+    }
+
+    public static Arrow CreateEliteArrow() => new Arrow(Arrowhead.Steel, Fletching.Plastic, 95);
+    public static Arrow CreateBeginnerArrow() => new Arrow(Arrowhead.Wood, Fletching.GooseFeathers, 75);
+    public static Arrow CreateMarksmanArrow() => new Arrow(Arrowhead.Steel, Fletching.GooseFeathers, 65);
 }
-  public enum Arrowhead {Steel, Wood, Obsidian}
-  public enum Fletching {Plastic, TurkeyFeathers, GooseFeathers}
+
+public enum Arrowhead { Steel, Wood, Obsidian }
+public enum Fletching { Plastic, TurkeyFeathers, GooseFeathers }
