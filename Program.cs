@@ -1,27 +1,30 @@
-﻿// Boss Battle THE POINT 
+﻿// The Color
 
-Point point = new(2, 3);
-Point point1= new(-4, 0);
-Point origin = new();
+Color random = new Color( 2, 5, 4);
+Color set = Color.Blue;
 
-Console.WriteLine($"{origin.X} {origin.Y}");
-Console.WriteLine($"{point.X}, {point.Y}");
-Console.WriteLine($"{point1.X}, {point1.Y}");
+Console.WriteLine($"{random.R}, {random.G}, {random.B}");
+Console.WriteLine($"{set.R} {set.G} {set.B}");
 
-class Point
+class Color
 {
-  public int X { get; set; }
-  public int Y { get; set; }
+  public int R { get;}
+  public int G { get;}
+  public int B { get; }
 
-  public Point(int x, int y)
+  public Color(int red, int green, int blue)
   {
-    X = x;
-    Y = y;
+    R = red;
+    G= green;
+    B = blue;
   }
+  public static Color White { get;} = new Color(255, 255, 255);
+  public static Color Black { get;} = new Color(0,0,0);
+  public static Color Red { get;} = new Color(255, 0, 0);
+  public static Color Orange { get;} = new Color(255, 165, 0);
+  public static Color Yellow { get;} = new Color(255, 255, 0);
+  public static Color Green { get;} = new Color(0, 128, 0);
+  public static Color Blue { get;} = new Color(0,0, 255);
+  public static Color Purple { get;} = new Color(128, 0, 128);
 
-  public Point()
-  {
-    X = 0;
-    Y = 0;
-  }
 }
