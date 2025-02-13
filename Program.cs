@@ -1,30 +1,29 @@
-﻿// The Color
+﻿// The Card
 
-Color random = new Color( 2, 5, 4);
-Color set = Color.Blue;
+Color[] colors = new Color[] { Color.Red, Color.Green, Color.Blue, Color.Yellow };
+Rank[] ranks= new Rank[] { Rank.One, Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.DollarSign, Rank.Percent, Rank.Caret, Rank.Ampersand };
 
-Console.WriteLine($"{random.R}, {random.G}, {random.B}");
-Console.WriteLine($"{set.R} {set.G} {set.B}");
-
-class Color
+foreach (Color color in colors)
 {
-  public int R { get;}
-  public int G { get;}
-  public int B { get; }
-
-  public Color(int red, int green, int blue)
-  {
-    R = red;
-    G= green;
-    B = blue;
-  }
-  public static Color White { get;} = new Color(255, 255, 255);
-  public static Color Black { get;} = new Color(0,0,0);
-  public static Color Red { get;} = new Color(255, 0, 0);
-  public static Color Orange { get;} = new Color(255, 165, 0);
-  public static Color Yellow { get;} = new Color(255, 255, 0);
-  public static Color Green { get;} = new Color(0, 128, 0);
-  public static Color Blue { get;} = new Color(0,0, 255);
-  public static Color Purple { get;} = new Color(128, 0, 128);
-
+    foreach (Rank rank in ranks)
+    {
+        Card card = new Card(rank, color);
+        Console.WriteLine($"The {card.Color} {card.Rank}");
+    }
 }
+class Card
+{
+  public Rank Rank { get; set; }
+  public Color Color { get; set; }
+
+  public Card(Rank rank, Color color)
+  {
+    Rank = rank;
+    Color = color;
+  }
+  public bool IsSymbol => Rank == Rank.Ampersand || Rank == Rank.Caret || Rank == Rank.DollarSign || Rank == Rank.Percent;
+  public bool IsNumber => !IsSymbol;
+}
+
+enum Color {Red, Green, Blue, Yellow}
+enum Rank { One , Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, DollarSign, Percent, Caret, Ampersand}
